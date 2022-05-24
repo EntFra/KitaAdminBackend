@@ -5,14 +5,12 @@
  */
 package com.kitaAdmin.KitaAdmin.controller;
 
+import com.kitaAdmin.KitaAdmin.entity.Grupos;
+import com.kitaAdmin.KitaAdmin.entity.Profesores;
 import com.kitaAdmin.KitaAdmin.entity.Usuarios;
 import com.kitaAdmin.KitaAdmin.service.GruposService;
 import com.kitaAdmin.KitaAdmin.service.ProfesoresService;
-import com.kitaAdmin.KitaAdmin.service.UsuariosService;
-
-import java.util.List;
-import java.util.Map;
-
+import com.kitaAdmin.interfaces.UsuariosInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +25,7 @@ import org.springframework.web.bind.annotation.*;
 public class MainController {
     
     @Autowired
-    UsuariosService usuariosService;
+    UsuariosInterface usuariosService;
     
     @PostMapping ("/getUsuario")
     public Usuarios getUsuario (@RequestBody Usuarios usuario){
@@ -36,7 +34,7 @@ public class MainController {
     
     @PutMapping ("/addUsuario")
     public Usuarios addUsuario (@RequestBody Usuarios usuario){
-        return usuariosService.addUsuario(usuario);
+        return usuariosService.save(usuario);
     }
 
     
@@ -44,16 +42,21 @@ public class MainController {
     GruposService gruposService;
     
     @GetMapping("/getGrupos")
-    public List<Map<String,Object>> getGrupos(){
-    	return gruposService.get();
+    public Iterable<Grupos> getGrupos(){
+    	return gruposService.findAll();
     }	
     @Autowired
     ProfesoresService profesoresService;
     	
-    @GetMapping("/getProfesores")
-    public List<Map<String,Object>> getProfesores(){     	
-		return profesoresService.get();    	
+    @PostMapping("/getProfesores/grupo")
+    public Iterable<Profesores> getProfesores(@RequestParam String grupo){     	
+		return profesoresService.findAllByGrupo(grupo);    	
     }
 
+    //Pruebas
+    @GetMapping("/getProfes")
+    public Iterable<Profesores> getProfes(){
+    	return profesoresService.findAll();
+    }	
     
 }

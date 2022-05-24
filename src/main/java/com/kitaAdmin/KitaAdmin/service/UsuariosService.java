@@ -5,19 +5,49 @@
  */
 package com.kitaAdmin.KitaAdmin.service;
 
+import com.kitaAdmin.KitaAdmin.dao.UsuariosDao;
 import com.kitaAdmin.KitaAdmin.entity.Usuarios;
-import org.springframework.stereotype.Component;
+import com.kitaAdmin.interfaces.UsuariosInterface;
 
+import org.springframework.stereotype.Service;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import org.springframework.beans.factory.annotation.Autowired;
 /**
- * Crea  funciones abstractas como getUsuario o addUsuario
+ * Clase que implementa la interface de "Service"
+ *
  * @author ivanp
  */
+@Service
+public class UsuariosService implements UsuariosInterface {
 
-@Component
-public interface UsuariosService {
+    private final EntityManager entityManager;
+
+    @Autowired
+    public UsuariosService(EntityManager theEntityManager) {
+        entityManager = theEntityManager;
+    }
+
+    @Autowired 
+    private UsuariosDao usuariosDao;
     
-    public Usuarios getUsuario(Usuarios usuario);
-    
-    public Usuarios addUsuario (Usuarios usuario);
-    
+    @Override
+    public Usuarios getUsuario(Usuarios usuarioDetalles) {
+        TypedQuery<Usuarios> typedQuery = entityManager.createQuery(
+                "FROM Usuarios WHERE contrasenia = :contrasenia AND nombre_usuario = :nombre_usuario", Usuarios.class);
+        try {
+            Usuarios usuario = typedQuery.setParameter("contrasenia", usuarioDetalles.getContrasenia()).setParameter("nombre_usuario", usuarioDetalles.getNombre_usuario()).getSingleResult();
+            return usuario;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+	@Override
+	public Usuarios save(Usuarios usuario) {
+		
+		return usuariosDao.save(usuario);
+	}
+
+
 }

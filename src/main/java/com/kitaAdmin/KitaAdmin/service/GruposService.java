@@ -1,10 +1,11 @@
 package com.kitaAdmin.KitaAdmin.service;
 
-import java.util.List;
-import java.util.Map;
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kitaAdmin.KitaAdmin.dao.GruposDao;
 import com.kitaAdmin.KitaAdmin.entity.Grupos;
@@ -14,36 +15,37 @@ import com.kitaAdmin.interfaces.GruposInterface;
 public class GruposService implements GruposInterface{
 	
 	@Autowired
-	GruposDao dao;
-	
-	@Override
-	public List<Map<String, Object>> get() {
-		return dao.get();
-		
-	}
+	private GruposDao gruposDao;
 
 	@Override
-	public List<Map<String, Object>> get(String nombre) {
+	@Transactional(readOnly = true)
+	public Iterable<Grupos> findAll() {
 		// TODO Auto-generated method stub
-		return dao.get(nombre);
+		return gruposDao.findAll();
 	}
 
+
 	@Override
-	public Grupos add(Grupos g) {
+	@Transactional
+	public Grupos save(Grupos grupo) {
 		// TODO Auto-generated method stub
-		return null;
+		return gruposDao.save(grupo);
 	}
 
 	@Override
+	@Transactional
 	public Grupos edit(Grupos g) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@Transactional
 	public void delete(String nombre) {
 		// TODO Auto-generated method stub
 		
 	}
+	
+
 
 }

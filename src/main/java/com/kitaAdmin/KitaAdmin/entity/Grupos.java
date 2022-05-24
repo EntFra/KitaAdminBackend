@@ -5,7 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
+@Data
 @Table(name = "grupos")
 /**
  * Clase Usuarios que actuara como entidad durante la comunicacion con la base de datos
@@ -19,29 +22,4 @@ public class Grupos {
 	@Column (name = "foto")
 	private byte[] foto;
 
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public byte[] getFoto() {
-		return foto;
-	}
-
-	public void setFoto(byte[] foto) {
-		this.foto = foto;
-	}
-
-	public Grupos(String nombre, byte[] foto) {
-		super();
-		this.nombre = nombre;
-		this.foto = foto;
-	}
-
-    public Grupos() {
-    	
-    }
 }

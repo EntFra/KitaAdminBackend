@@ -1,10 +1,8 @@
 package com.kitaAdmin.KitaAdmin.service;
 
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kitaAdmin.KitaAdmin.dao.ProfesoresDao;
 import com.kitaAdmin.KitaAdmin.entity.Profesores;
@@ -14,34 +12,37 @@ import com.kitaAdmin.interfaces.ProfesoresInterface;
 public class ProfesoresService implements ProfesoresInterface {
 	
 	@Autowired
-	ProfesoresDao dao;
-	
-	@Override
-	public List<Map<String, Object>> get() {
-		return dao.get();		
-	}
+	private ProfesoresDao profesoresDao;
+	//Recupera todos los profesores
 
 	@Override
-	public List<Map<String, Object>> get(String nombreGrupo) {
-		
-		return dao.get(nombreGrupo);
-	}
-
-	@Override
-	public Profesores add(Profesores g) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
+	@Transactional
 	public Profesores edit(Profesores g) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 	@Override
-	public void delete(String nombre) {
+	@Transactional(readOnly = true)
+	public Iterable<Profesores> findAllByGrupo(String grupo) {		
+		return profesoresDao.findAllByGrupo(grupo);
+	}
+	@Override
+	@Transactional(readOnly = true)
+	public Iterable<Profesores> findAll() {
+		return profesoresDao.findAll();
+	}
+	@Override
+	@Transactional
+	public Profesores save(Profesores profesor) {
+		// TODO Auto-generated method stub
+		return profesoresDao.save(profesor);
+	}
+	@Override
+	@Transactional
+	public void deleteById(String dni) {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 }

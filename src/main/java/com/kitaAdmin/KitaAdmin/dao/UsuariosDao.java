@@ -6,7 +6,9 @@
 package com.kitaAdmin.KitaAdmin.dao;
 
 import com.kitaAdmin.KitaAdmin.entity.Usuarios;
-import org.springframework.data.repository.CrudRepository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 
 
@@ -14,6 +16,7 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author ivanp
  */
-public interface UsuariosDao extends CrudRepository<Usuarios,String> {
+@Repository
+public interface UsuariosDao extends JpaRepository<Usuarios,Integer> {
     
 }
