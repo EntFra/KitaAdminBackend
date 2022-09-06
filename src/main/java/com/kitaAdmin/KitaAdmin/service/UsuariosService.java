@@ -48,6 +48,15 @@ public class UsuariosService implements UsuariosInterface {
 		
 		return usuariosDao.save(usuario);
 	}
+	
+	@Override
+	public void deleteUsuarios(int id) {
+		usuariosDao.deleteById(id);
+	}
 
+	@Override
+	public Usuarios getById(int id) {
+		return usuariosDao.getById(id);
+	}
 
 }

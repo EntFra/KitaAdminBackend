@@ -18,5 +18,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UsuariosDao extends JpaRepository<Usuarios,Integer> {
-    
+    Usuarios getById (int id);
 }

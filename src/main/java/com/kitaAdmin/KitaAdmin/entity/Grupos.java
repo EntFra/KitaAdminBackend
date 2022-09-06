@@ -18,8 +18,5 @@ public class Grupos {
 	@Id
 	@Column (name = "nombre")
 	private String nombre;
-	
-	@Column (name = "foto")
-	private byte[] foto;
 
 }

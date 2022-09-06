@@ -8,6 +8,6 @@ import com.kitaAdmin.KitaAdmin.entity.Profesores;
 @Repository
 public interface ProfesoresDao extends JpaRepository<Profesores,String> {
 
-	Iterable<Profesores> findAllByGrupo(String grupo);
+	Iterable<Profesores> findAllByGrupo(String dni);
 	
 }

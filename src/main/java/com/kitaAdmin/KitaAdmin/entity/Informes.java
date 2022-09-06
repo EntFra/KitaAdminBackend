@@ -1,11 +1,18 @@
 package com.kitaAdmin.KitaAdmin.entity;
 
+
+import java.sql.Time;
+import java.time.Duration;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
@@ -19,13 +26,15 @@ import lombok.Data;
 public class Informes {
 	@Id
 	@Column (name = "alumno_id")
-	private int alumno_id;
+	private int alumnoId;
 	
 	@Column (name = "deposicion")
 	private boolean deposicion;
 	
 	@Column (name = "suenio")
-	private int suenio;
+	@DateTimeFormat(pattern = "HH:mm")
+	@JsonFormat(pattern="HH:mm")
+	private Time suenio;
 	
 	@Column (name = "comida")
 	private boolean comida;
@@ -34,6 +43,8 @@ public class Informes {
 	private boolean bebida;
 	
 	@Column (name = "fecha")
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private Date fecha;
 
 }

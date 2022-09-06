@@ -17,9 +17,8 @@ public class ProfesoresService implements ProfesoresInterface {
 
 	@Override
 	@Transactional
-	public Profesores edit(Profesores g) {
-		// TODO Auto-generated method stub
-		return null;
+	public Profesores update(Profesores profesor) {
+		return profesoresDao.save(profesor);
 	}
 	@Override
 	@Transactional(readOnly = true)
@@ -38,11 +37,11 @@ public class ProfesoresService implements ProfesoresInterface {
 		return profesoresDao.save(profesor);
 	}
 	@Override
-	@Transactional
 	public void deleteById(String dni) {
-		// TODO Auto-generated method stub
+		profesoresDao.deleteById(dni);
 		
 	}
+
 
 
 }

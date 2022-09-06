@@ -6,10 +6,13 @@
 package com.kitaAdmin.KitaAdmin.entity;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
 
 @Entity
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "usuarios")
 /**
  * Clase Usuarios que actuara como entidad durante la comunicacion con la base de datos

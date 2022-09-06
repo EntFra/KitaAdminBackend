@@ -1,5 +1,6 @@
 package com.kitaAdmin.KitaAdmin.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -13,6 +14,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
@@ -30,9 +34,13 @@ public class Profesores {
 	private String dni;
 		
 	@Column (name = "fecha_alta")
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private Date fecha_alta;
 	
 	@Column (name = "fecha_nac")
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private Date fecha_nac;
 	
 	@Column (name = "direccion")

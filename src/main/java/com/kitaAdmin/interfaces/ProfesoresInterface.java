@@ -6,6 +6,6 @@ public interface ProfesoresInterface {
 	public Iterable<Profesores> findAll();
 	public Iterable<Profesores> findAllByGrupo(String grupo);
 	public Profesores save(Profesores profesor);
-	public Profesores edit(Profesores profesor);
 	public void deleteById(String dni);
+	public Profesores update(Profesores profesor);
 }
