@@ -6,8 +6,9 @@ import org.springframework.stereotype.Repository;
 import com.kitaAdmin.KitaAdmin.entity.Profesores;
 
 @Repository
-public interface ProfesoresDao extends JpaRepository<Profesores,String> {
+public interface ProfesoresDao extends JpaRepository<Profesores,Integer> {
 
-	Iterable<Profesores> findAllByGrupo(String dni);
+	Iterable<Profesores> findAllByGrupo(String grupo);	
+	
 	
 }

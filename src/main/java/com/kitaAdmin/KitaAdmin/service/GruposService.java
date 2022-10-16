@@ -20,7 +20,6 @@ public class GruposService implements GruposInterface{
 	@Override
 	@Transactional(readOnly = true)
 	public Iterable<Grupos> findAll() {
-		// TODO Auto-generated method stub
 		return gruposDao.findAll();
 	}
 
@@ -28,21 +27,18 @@ public class GruposService implements GruposInterface{
 	@Override
 	@Transactional
 	public Grupos save(Grupos grupo) {
-		// TODO Auto-generated method stub
 		return gruposDao.save(grupo);
 	}
 
 	@Override
 	@Transactional
 	public Grupos edit(Grupos g) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	@Transactional
 	public void delete(String nombre) {
-		// TODO Auto-generated method stub
 		
 	}
 	

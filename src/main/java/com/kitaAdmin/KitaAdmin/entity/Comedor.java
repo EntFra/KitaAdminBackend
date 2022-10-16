@@ -10,6 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 @Entity
@@ -30,9 +34,11 @@ public class Comedor implements Serializable{
 	@Column (name = "menu_id")
 	private int menu_id;
 	
-	@Id
-	@Column (name = "dia_id")
-	private Date dia_id;
+	
+	@Column (name = "fecha")
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "dd-MM-yyyy")
+	private Date fecha;
 	
 	@Column (name = "snack")
 	private String snack;
@@ -45,12 +51,6 @@ public class Comedor implements Serializable{
 	
 	@Column (name = "postre")
 	private String postre;
-	
-	@Column (name = "nombre_grupo")
-	private String nombre_grupo;
-	
-	@Column (name = "comedorcol")
-	private String comedorcol;
 
 	
 }

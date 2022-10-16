@@ -26,8 +26,5 @@ public class Informacion {
 	@Column (name = "informacion")
 	private String informacion;
 	
-	@Column (name = "nombre_grupo")
-	private String nombre_grupo;
-
-	
 }
+

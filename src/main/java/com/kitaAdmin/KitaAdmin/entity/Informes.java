@@ -2,7 +2,6 @@ package com.kitaAdmin.KitaAdmin.entity;
 
 
 import java.sql.Time;
-import java.time.Duration;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -24,7 +23,7 @@ import lombok.Data;
  * @author ivanp
  */
 public class Informes {
-	@Id
+	
 	@Column (name = "alumno_id")
 	private int alumnoId;
 	
@@ -33,7 +32,7 @@ public class Informes {
 	
 	@Column (name = "suenio")
 	@DateTimeFormat(pattern = "HH:mm")
-	@JsonFormat(pattern="HH:mm")
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="HH:mm")
 	private Time suenio;
 	
 	@Column (name = "comida")
@@ -42,9 +41,13 @@ public class Informes {
 	@Column (name = "bebida")
 	private boolean bebida;
 	
+	@Id
 	@Column (name = "fecha")
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	@JsonFormat(pattern = "dd-MM-yyyy")
 	private Date fecha;
+	
+	@Column (name = "observaciones")
+	private String observaciones;
 
 }

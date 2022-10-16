@@ -20,7 +20,6 @@ public class ProfesoresService implements ProfesoresInterface {
 	public Profesores update(Profesores profesor) {
 		return profesoresDao.save(profesor);
 	}
-	@Override
 	@Transactional(readOnly = true)
 	public Iterable<Profesores> findAllByGrupo(String grupo) {		
 		return profesoresDao.findAllByGrupo(grupo);
@@ -37,8 +36,8 @@ public class ProfesoresService implements ProfesoresInterface {
 		return profesoresDao.save(profesor);
 	}
 	@Override
-	public void deleteById(String dni) {
-		profesoresDao.deleteById(dni);
+	public void deleteById(int id) {
+		profesoresDao.deleteById(id);
 		
 	}
 

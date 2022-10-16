@@ -19,7 +19,7 @@ import lombok.Data;
 public class Calendario {
 	@Id
 	@Column (name = "dia_id")
-	private Date dia_id;
+	private Date fecha;
 	
 	@Column (name = "evento")
 	private String evento;

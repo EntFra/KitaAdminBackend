@@ -14,5 +14,5 @@ public interface InformesDao extends JpaRepository<Informes, Integer>{
 	Informes findAllByAlumnoIdAndFecha(int alumnoId, Date fecha);
 	
 	
-	Iterable<Informes> findAllByAlumnoId(int alumnoId);
+	Iterable <Informes> findAllByAlumnoId(int alumnoId);
 }

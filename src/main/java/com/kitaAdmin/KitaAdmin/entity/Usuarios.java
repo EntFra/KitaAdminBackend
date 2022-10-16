@@ -23,8 +23,8 @@ public class Usuarios {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "usuarios_id")
-    private int id;
-    
+    private int id;    
+
     @Column(name = "nombre")
     private String nombre;
 
@@ -42,6 +42,5 @@ public class Usuarios {
     
     @Column(name = "email")
     private String email;
-    
-   
+
 }

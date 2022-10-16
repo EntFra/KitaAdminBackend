@@ -6,13 +6,19 @@
 package com.kitaAdmin.KitaAdmin.controller;
 
 import com.kitaAdmin.KitaAdmin.entity.Alumnos;
+import com.kitaAdmin.KitaAdmin.entity.Calendario;
+import com.kitaAdmin.KitaAdmin.entity.Comedor;
 import com.kitaAdmin.KitaAdmin.entity.Grupos;
+import com.kitaAdmin.KitaAdmin.entity.Informacion;
 import com.kitaAdmin.KitaAdmin.entity.Informes;
 import com.kitaAdmin.KitaAdmin.entity.Padres;
 import com.kitaAdmin.KitaAdmin.entity.Profesores;
 import com.kitaAdmin.KitaAdmin.entity.Usuarios;
 import com.kitaAdmin.KitaAdmin.service.AlumnosService;
+import com.kitaAdmin.KitaAdmin.service.CalendarioService;
+import com.kitaAdmin.KitaAdmin.service.ComedorService;
 import com.kitaAdmin.KitaAdmin.service.GruposService;
+import com.kitaAdmin.KitaAdmin.service.InformacionService;
 import com.kitaAdmin.KitaAdmin.service.InformesService;
 import com.kitaAdmin.KitaAdmin.service.PadresService;
 import com.kitaAdmin.KitaAdmin.service.ProfesoresService;
@@ -33,7 +39,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController 
 @RequestMapping
 public class MainController {
-    
     @Autowired
     UsuariosService usuariosService;
     
@@ -42,7 +47,7 @@ public class MainController {
         return usuariosService.getUsuario(usuario);
     }
     
-    @GetMapping("/getUsuario/id")
+    @PostMapping("/getUsuario/id")
     public Usuarios getUsuario(@RequestParam int usuarios_id){
     	return usuariosService.getById(usuarios_id);
     }
@@ -50,6 +55,11 @@ public class MainController {
     @PutMapping ("/addUsuario")
     public Usuarios addUsuario (@RequestBody Usuarios usuario){
         return usuariosService.save(usuario);
+    }
+    
+    @DeleteMapping("/deleteUsuarios")
+    public void deleteUsuarios (@RequestParam int id){
+    	usuariosService.deleteUsuarios(id);
     }
 
     
@@ -70,15 +80,9 @@ public class MainController {
     
     @PutMapping("/updateProfesor")
     public Profesores updateProfesor(@RequestBody Profesores profesor) {    	
-		return profesoresService.save(profesor);
-    	
+		return profesoresService.update(profesor);
     }
-    
-    @DeleteMapping("/deleteProfesor")
-    public void deleteProfesor(@RequestBody Profesores profesor) {
-    	profesoresService.deleteById(profesor.getDni());
-    }
-    
+       
     @Autowired
     AlumnosService alumnosService;
     
@@ -88,14 +92,16 @@ public class MainController {
     }
     
     @DeleteMapping("/deleteAlumno")
-    public void deleteAlumno(@RequestBody Alumnos alumno) {
-    	alumnosService.deleteById(alumno.getAlumno_id());
+    public void deleteAlumno(@RequestParam int alumnoId) {
+    	alumnosService.deleteById(alumnoId);
+    }
+    
+    @PutMapping("/updateAlumno")
+    public Alumnos updateAlumno(@RequestBody Alumnos alumno) {    	
+		return alumnosService.update(alumno);
     }
 
-    @DeleteMapping("/deleteUsuarios/{id}")
-    public void deleteUsuarios (@RequestParam int id){
-    	usuariosService.deleteUsuarios(id);
-    }
+
     
     @Autowired
     PadresService padresService;
@@ -111,6 +117,40 @@ public class MainController {
     @PostMapping(path = "/getInformes/alumnoId")
     public Informes getInformes(@RequestParam(value="alumnoId") int alumnoId, @RequestParam(value="fecha") @DateTimeFormat(pattern="dd-MM-yyyy") Date fecha ){
     	return informesService.findAllByAlumnoIdAndFecha(alumnoId, fecha);
+    }
+    
+    @PutMapping(path = "/updateInformes")
+    public Informes updateInformes(@RequestBody Informes informe) {
+		return informesService.update(informe);
+    }
+    
+    @Autowired
+    ComedorService comedorService;
+    
+    @PostMapping(path = "/getComedor")
+    public Comedor getComedor(@RequestParam(value="fecha") @DateTimeFormat(pattern="dd-MM-yyyy") Date fecha ){
+    	return comedorService.findAllByFecha(fecha);
+    }
+    
+    @PutMapping(path = "/updateComedor")
+    public Comedor updateComedor(@RequestBody Comedor comedor) {
+		return comedorService.update(comedor);
+    }
+    
+    @Autowired
+    CalendarioService calendarioService;
+    
+    @PostMapping(path = "/getCalendario")
+    public Calendario getCalendario(@RequestParam(value="fecha") @DateTimeFormat(pattern="dd-MM-yyyy") Date fecha) {
+    	return calendarioService.findAllByFecha(fecha);
+    }
+    
+    @Autowired
+    InformacionService informacionService;
+    
+    @PostMapping("/getInformacion")
+    public Iterable<Informacion> getInformacion(){
+    	return informacionService.findAll();
     }
     
 }
