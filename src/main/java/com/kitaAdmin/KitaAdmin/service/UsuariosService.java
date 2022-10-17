@@ -6,10 +6,13 @@
 package com.kitaAdmin.KitaAdmin.service;
 
 import com.kitaAdmin.KitaAdmin.dao.UsuariosDao;
+import com.kitaAdmin.KitaAdmin.entity.Profesores;
 import com.kitaAdmin.KitaAdmin.entity.Usuarios;
 import com.kitaAdmin.interfaces.UsuariosInterface;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,4 +62,9 @@ public class UsuariosService implements UsuariosInterface {
 		return usuariosDao.getById(id);
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public Iterable<Usuarios> findAll() {
+		return usuariosDao.findAll();
+	}
 }

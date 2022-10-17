@@ -52,6 +52,11 @@ public class MainController {
     	return usuariosService.getById(usuarios_id);
     }
     
+    @PostMapping("/getUsuarios")
+    public Iterable<Usuarios> getUsuarios(){     	
+		return usuariosService.findAll();   
+    }
+		
     @PutMapping ("/addUsuario")
     public Usuarios addUsuario (@RequestBody Usuarios usuario){
         return usuariosService.save(usuario);

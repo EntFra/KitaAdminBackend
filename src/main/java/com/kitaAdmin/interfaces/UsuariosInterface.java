@@ -25,5 +25,7 @@ public interface UsuariosInterface {
 	void deleteUsuarios(int id);
 
 	public Usuarios getById(int id);
+
+	Iterable<Usuarios> findAll();
     
 }
