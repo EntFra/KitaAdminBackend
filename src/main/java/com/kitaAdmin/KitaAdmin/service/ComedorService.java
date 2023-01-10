@@ -25,8 +25,14 @@ public class ComedorService implements ComedorInterface{
 	
 	@Transactional
 	public Comedor update(Comedor comedor) {
-		// TODO Auto-generated method stub
 		return comedorDao.save(comedor);
 	}
+	
+	@Transactional
+	public void deleteByFecha(Date dia) {
+		comedorDao.deleteByFecha(dia);
+		
+	}
+
 
 }

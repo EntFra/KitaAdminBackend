@@ -6,7 +6,6 @@
 package com.kitaAdmin.KitaAdmin.service;
 
 import com.kitaAdmin.KitaAdmin.dao.UsuariosDao;
-import com.kitaAdmin.KitaAdmin.entity.Profesores;
 import com.kitaAdmin.KitaAdmin.entity.Usuarios;
 import com.kitaAdmin.interfaces.UsuariosInterface;
 
@@ -66,5 +65,11 @@ public class UsuariosService implements UsuariosInterface {
 	@Transactional(readOnly = true)
 	public Iterable<Usuarios> findAll() {
 		return usuariosDao.findAll();
+	}
+	
+	@Override
+	@Transactional
+	public Usuarios update(Usuarios usuario) {
+		return usuariosDao.save(usuario);
 	}
 }

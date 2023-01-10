@@ -10,6 +10,8 @@ import com.kitaAdmin.KitaAdmin.entity.Calendario;
 @Repository
 public interface CalendarioDao extends JpaRepository<Calendario, Integer>{
 
-	Calendario findAllByFecha(Date fecha);
+	Calendario findAllByDia(Date dia);
+
+	void deleteByDia(Date dia);
 
 }

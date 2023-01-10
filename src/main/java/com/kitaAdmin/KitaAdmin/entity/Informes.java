@@ -24,7 +24,7 @@ import lombok.Data;
  */
 public class Informes {
 	
-	@Column (name = "alumno_id")
+	@Column (name = "alumno_id_inf")
 	private int alumnoId;
 	
 	@Column (name = "deposicion")

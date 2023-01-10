@@ -18,4 +18,15 @@ public class InformacionService implements InformacionInterface{
 		return informacionDao.findAll();
 	}
 
+	@Override
+	public void deleteById(int id) {
+		informacionDao.deleteById(id);
+		
+	}
+
+	public Informacion update (Informacion informacion) {
+		return informacionDao.save(informacion);
+	}
+
+	
 }

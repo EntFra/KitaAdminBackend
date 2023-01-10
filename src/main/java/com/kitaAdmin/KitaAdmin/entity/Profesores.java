@@ -1,7 +1,6 @@
 package com.kitaAdmin.KitaAdmin.entity;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -9,15 +8,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -34,6 +29,11 @@ import lombok.Data;
  */
 public class Profesores implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Column (name = "dni")
 	private String dni;
 		
@@ -50,7 +50,7 @@ public class Profesores implements Serializable{
 	@Column (name = "direccion")
 	private String direccion;
 	
-	@Column (name = "nombre_grupo")
+	@Column (name = "nombre_grupo_prof")
 	private String grupo;
 	
 	@Id
@@ -61,6 +61,9 @@ public class Profesores implements Serializable{
 	@MapsId
     @JoinColumn (name = "usuarios_id_prof" )
 	private Usuarios usuario;
+	
+	
+	
 
 	
 

@@ -8,4 +8,6 @@ import com.kitaAdmin.KitaAdmin.entity.Padres;
 @Repository
 public interface PadresDao extends JpaRepository<Padres,Integer>{
 	Iterable<Padres> findAllByAlumnoId(int alumnoId);
+	
+	Padres findByUsuariosId(int usuariosId);
 }

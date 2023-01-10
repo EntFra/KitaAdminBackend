@@ -10,4 +10,5 @@ public interface AlumnosDao extends JpaRepository<Alumnos,Integer>{
 
 	Iterable<Alumnos> findAllByGrupo(String grupo);
 	
+	Alumnos findById(int alumnoId);
 }

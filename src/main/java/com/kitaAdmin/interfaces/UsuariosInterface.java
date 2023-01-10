@@ -26,6 +26,8 @@ public interface UsuariosInterface {
 
 	public Usuarios getById(int id);
 
-	Iterable<Usuarios> findAll();
+	public Iterable<Usuarios> findAll();
+
+	public Usuarios update(Usuarios usuario);
     
 }

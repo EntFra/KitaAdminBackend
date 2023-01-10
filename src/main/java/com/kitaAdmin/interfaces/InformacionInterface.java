@@ -5,4 +5,6 @@ import com.kitaAdmin.KitaAdmin.entity.Informacion;
 public interface InformacionInterface {
 	public Iterable<Informacion> findAll();
 
+	void deleteById(int id);
+
 }

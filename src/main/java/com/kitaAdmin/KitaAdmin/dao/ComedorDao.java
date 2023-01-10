@@ -12,4 +12,6 @@ public interface ComedorDao extends JpaRepository<Comedor, Integer>{
 	
 	Comedor findAllByFecha(Date fecha);
 
+	void deleteByFecha(Date dia);
+
 }

@@ -6,6 +6,6 @@ import com.kitaAdmin.KitaAdmin.entity.Calendario;
 
 public interface CalendarioInterface {
 	
-	public Calendario findAllByFecha(Date fecha);
+	Calendario findAllByDia(Date dia);
 
 }

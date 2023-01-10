@@ -41,4 +41,9 @@ public void deleteById(int alumnoId) {
 	
 }
 
+public Alumnos findById(int alumnoId) {
+	
+	return alumnosDao.findById(alumnoId);
+}
+
 }

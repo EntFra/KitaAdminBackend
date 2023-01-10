@@ -66,7 +66,11 @@ public class MainController {
     public void deleteUsuarios (@RequestParam int id){
     	usuariosService.deleteUsuarios(id);
     }
-
+    
+    @PutMapping("/updateUsuarios")
+    public Usuarios updateUsuarios(@RequestBody Usuarios usuario) {    	
+		return usuariosService.update(usuario);
+    }
     
     @Autowired
     GruposService gruposService;
@@ -83,6 +87,18 @@ public class MainController {
 		return profesoresService.findAllByGrupo(grupo);    	
     }
     
+    @GetMapping("/getProfesoresAll")
+    public Iterable<Profesores> getProfesoresAll  (){     	
+		return profesoresService.findAll();    	
+    }
+
+    
+    @PutMapping ("/addProfesor")
+    public Profesores addProfesor (@RequestBody Profesores profesor){
+        return profesoresService.save(profesor);
+    }
+    
+    
     @PutMapping("/updateProfesor")
     public Profesores updateProfesor(@RequestBody Profesores profesor) {    	
 		return profesoresService.update(profesor);
@@ -91,9 +107,24 @@ public class MainController {
     @Autowired
     AlumnosService alumnosService;
     
+    @PutMapping ("/addAlumno")
+    public Alumnos addAlumno (@RequestBody Alumnos alumno){
+        return alumnosService.save(alumno);
+    }
+    
     @GetMapping("/getAlumnos/grupo")
     public Iterable<Alumnos> getAlumnos(@RequestParam String grupo){     	
 		return alumnosService.findAllByGrupo(grupo);    	
+    }
+    
+    @PostMapping("/getAlumnos")
+    public Iterable<Alumnos> getAlumnosAll(){     	
+		return alumnosService.findAll();    	
+    }
+    
+    @PostMapping("/getAlumno/alumnoId")
+    public Alumnos getAlumnoByAlumnoId(@RequestParam int alumnoId){
+    	return alumnosService.findById(alumnoId);
     }
     
     @DeleteMapping("/deleteAlumno")
@@ -111,10 +142,27 @@ public class MainController {
     @Autowired
     PadresService padresService;
     
-    @GetMapping("/getPadres/alumnoId")
+    @PostMapping("/getPadres/alumnoId")
     public Iterable<Padres> getPadres(@RequestParam int alumnoId){
     	return padresService.findAllByAlumnoId(alumnoId);
     }
+    
+    @PostMapping("/getPadres/usuarioId")
+    public Padres getPadresByUsuariosId(@RequestParam int usuariosIdPad){
+    	return padresService.findByUsuariosId(usuariosIdPad);
+    }
+    
+    @PutMapping("/updatePadres")
+    public Padres updatePadres(@RequestBody Padres padre) {    	
+		return padresService.update(padre);
+    }
+    
+    @PutMapping ("/addPadres")
+    public Padres addPadres (@RequestBody Padres padre){
+        return padresService.save(padre);
+    }
+    
+    
     
     @Autowired
     InformesService informesService;
@@ -142,12 +190,27 @@ public class MainController {
 		return comedorService.update(comedor);
     }
     
+    @DeleteMapping("/deleteComedor")
+    public void deleteComedor(@RequestParam(value="dia") @DateTimeFormat(pattern="dd-MM-yyyy") Date dia) {
+    	comedorService.deleteByFecha(dia);
+    }
+    
     @Autowired
     CalendarioService calendarioService;
     
     @PostMapping(path = "/getCalendario")
-    public Calendario getCalendario(@RequestParam(value="fecha") @DateTimeFormat(pattern="dd-MM-yyyy") Date fecha) {
-    	return calendarioService.findAllByFecha(fecha);
+    public Calendario getCalendario(@RequestParam(value="dia") @DateTimeFormat(pattern="dd-MM-yyyy") Date dia) {
+    	return calendarioService.findAllByDia(dia);
+    }
+    
+    @PutMapping(path = "/updateCalendario")
+    public Calendario updateCalendario(@RequestBody Calendario calendario) {
+		return calendarioService.update(calendario);
+    }
+    
+    @DeleteMapping("/deleteCalendario")
+    public void deleteCalendario(@RequestParam(value="dia") @DateTimeFormat(pattern="dd-MM-yyyy") Date dia) {
+    	calendarioService.deleteByDia(dia);
     }
     
     @Autowired
@@ -158,4 +221,13 @@ public class MainController {
     	return informacionService.findAll();
     }
     
+    @DeleteMapping("/deleteInformacion")
+    public void deleteInformacion(@RequestParam(value="informacion_id")int informacion_id) {
+    	informacionService.deleteById(informacion_id);
+    }
+    
+    @PutMapping(path = "/updateInformacion")
+    public Informacion updateInformacion(@RequestBody Informacion informacion) {
+		return informacionService.update(informacion);
+    }
 }

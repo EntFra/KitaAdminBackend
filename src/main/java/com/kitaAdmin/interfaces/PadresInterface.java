@@ -4,5 +4,9 @@ import com.kitaAdmin.KitaAdmin.entity.Padres;
 
 public interface PadresInterface {
 
-	Iterable<Padres> findAllByAlumnoId(int alumnoId);
+	public Iterable<Padres> findAllByAlumnoId(int alumnoId);
+
+	public Padres findByUsuariosId(int usuariosId);
+
+	public Padres update(Padres padre);
 }
