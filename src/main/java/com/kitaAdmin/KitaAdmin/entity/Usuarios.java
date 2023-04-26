@@ -6,7 +6,7 @@
 package com.kitaAdmin.KitaAdmin.entity;
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
@@ -39,7 +39,7 @@ public class Usuarios {
     private String rol;
    
     @Column(name = "telefono")
-    private int telefono;
+    private Integer telefono;
     
     @Column(name = "email")
     private String email;

@@ -5,6 +5,10 @@
  */
 package com.kitaAdmin.KitaAdmin.controller;
 
+import com.kitaAdmin.KitaAdmin.dao.AlumnosDao;
+import com.kitaAdmin.KitaAdmin.dao.PadresDao;
+import com.kitaAdmin.KitaAdmin.dao.ProfesoresDao;
+import com.kitaAdmin.KitaAdmin.dao.UsuariosDao;
 import com.kitaAdmin.KitaAdmin.entity.Alumnos;
 import com.kitaAdmin.KitaAdmin.entity.Calendario;
 import com.kitaAdmin.KitaAdmin.entity.Comedor;
@@ -17,12 +21,15 @@ import com.kitaAdmin.KitaAdmin.entity.Usuarios;
 import com.kitaAdmin.KitaAdmin.service.AlumnosService;
 import com.kitaAdmin.KitaAdmin.service.CalendarioService;
 import com.kitaAdmin.KitaAdmin.service.ComedorService;
+import com.kitaAdmin.KitaAdmin.service.EstadisticasService;
 import com.kitaAdmin.KitaAdmin.service.GruposService;
 import com.kitaAdmin.KitaAdmin.service.InformacionService;
 import com.kitaAdmin.KitaAdmin.service.InformesService;
 import com.kitaAdmin.KitaAdmin.service.PadresService;
 import com.kitaAdmin.KitaAdmin.service.ProfesoresService;
 import com.kitaAdmin.KitaAdmin.service.UsuariosService;
+import com.kitaAdmin.classes.Estadisticas;
+import com.kitaAdmin.interfaces.AlumnosInterface;
 
 import java.util.Date;
 
@@ -48,9 +55,10 @@ public class MainController {
     }
     
     @PostMapping("/getUsuario/id")
-    public Usuarios getUsuario(@RequestParam int usuarios_id){
-    	return usuariosService.getById(usuarios_id);
+    public Usuarios getUsuario(@RequestParam int id){
+    	return usuariosService.getById(id);
     }
+
     
     @PostMapping("/getUsuarios")
     public Iterable<Usuarios> getUsuarios(){     	
@@ -230,4 +238,28 @@ public class MainController {
     public Informacion updateInformacion(@RequestBody Informacion informacion) {
 		return informacionService.update(informacion);
     }
+    
+    @Autowired
+    EstadisticasService estadisticasService;
+    
+    @Autowired
+    PadresDao padresDao;
+    @Autowired
+    AlumnosDao alumnosDao;
+    @Autowired
+    UsuariosDao usuariosDao;
+    @Autowired
+    ProfesoresDao profesoresDao;
+    
+
+    @PostMapping("/getEstadisticas")
+    public Estadisticas getEstadisticas() {
+    	Estadisticas estadisticas = new Estadisticas();
+    	estadisticas.setNumeroAlumnos(alumnosDao.count());
+    	estadisticas.setNumeroPadres(padresDao.count());
+    	estadisticas.setNumeroProfesores(profesoresDao.count());
+    	estadisticas.setNumeroUsuarios(usuariosDao.count());    	
+        return estadisticas;
+    }
+
 }

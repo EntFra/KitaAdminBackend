@@ -29,12 +29,10 @@ public class Comedor implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name = "menu_id")
 	private int menu_id;
 	
-	
+	@Id
 	@Column (name = "fecha")
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	@JsonFormat(pattern = "dd-MM-yyyy")

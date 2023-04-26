@@ -24,11 +24,11 @@ import lombok.Data;
  * @author ivanp
  */
 public class Calendario {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 	@Column (name = "calendario_id")
 	private int id;
   
+	@Id
 	@Column (name = "dia",unique=true, nullable = false)
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	@JsonFormat(pattern = "dd-MM-yyyy")

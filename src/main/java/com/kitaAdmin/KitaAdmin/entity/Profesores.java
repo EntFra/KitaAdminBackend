@@ -55,9 +55,9 @@ public class Profesores implements Serializable{
 	
 	@Id
 	@Column (name = "usuarios_id_prof")
-	private int id;
+	private Integer id;
 	
-	@OneToOne( fetch = FetchType.LAZY)
+	@OneToOne( fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@MapsId
     @JoinColumn (name = "usuarios_id_prof" )
 	private Usuarios usuario;

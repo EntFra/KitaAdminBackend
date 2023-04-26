@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
+
 /**
  * Clase que implementa la interface de "Service"
  *
@@ -23,34 +24,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Service
 public class UsuariosService implements UsuariosInterface {
 
-    private final EntityManager entityManager;
+	private final EntityManager entityManager;
 
-    @Autowired
-    public UsuariosService(EntityManager theEntityManager) {
-        entityManager = theEntityManager;
-    }
+	@Autowired
+	public UsuariosService(EntityManager theEntityManager) {
+		entityManager = theEntityManager;
+	}
 
-    @Autowired 
-    private UsuariosDao usuariosDao;
-    
-    @Override
-    public Usuarios getUsuario(Usuarios usuarioDetalles) {
-        TypedQuery<Usuarios> typedQuery = entityManager.createQuery(
-                "FROM Usuarios WHERE contrasenia = :contrasenia AND nombre_usuario = :nombre_usuario", Usuarios.class);
-        try {
-            Usuarios usuario = typedQuery.setParameter("contrasenia", usuarioDetalles.getContrasenia()).setParameter("nombre_usuario", usuarioDetalles.getNombre_usuario()).getSingleResult();
-            return usuario;
-        } catch (Exception e) {
-            return null;
-        }
-    }
+	@Autowired
+	private UsuariosDao usuariosDao;
+
+	@Override
+	public Usuarios getUsuario(Usuarios usuarioDetalles) {
+		TypedQuery<Usuarios> typedQuery = entityManager.createQuery(
+				"FROM Usuarios WHERE contrasenia = :contrasenia AND nombre_usuario = :nombre_usuario", Usuarios.class);
+		try {
+			Usuarios usuario = typedQuery.setParameter("contrasenia", usuarioDetalles.getContrasenia())
+					.setParameter("nombre_usuario", usuarioDetalles.getNombre_usuario()).getSingleResult();
+			return usuario;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 
 	@Override
 	public Usuarios save(Usuarios usuario) {
-		
+
 		return usuariosDao.save(usuario);
 	}
-	
+
 	@Override
 	public void deleteUsuarios(int id) {
 		usuariosDao.deleteById(id);
@@ -66,10 +68,12 @@ public class UsuariosService implements UsuariosInterface {
 	public Iterable<Usuarios> findAll() {
 		return usuariosDao.findAll();
 	}
-	
+
 	@Override
 	@Transactional
 	public Usuarios update(Usuarios usuario) {
 		return usuariosDao.save(usuario);
 	}
+
+
 }

@@ -33,7 +33,7 @@ public class Padres {
 	@Column (name = "usuarios_id_pad")
 	private int usuariosId;
 	
-	@Column (name = "alumno_id")
+	@Column (name = "alumno_id_pad")
 	private int alumnoId;
 	
 	@OneToOne( fetch = FetchType.LAZY)
